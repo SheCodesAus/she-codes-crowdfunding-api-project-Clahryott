@@ -19,6 +19,7 @@ class PledgeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pledge
         fields = ['id', 'amount', 'comment', 'anonymous', 'project', 'supporter']
+#this is a manual section, hence the fields need to be identified, rather than the below ProjectDetailSerializer (shorthand)
 
 class ProjectDetailSerializer(ProjectSerializer):
 	pledges = PledgeSerializer(many=True, read_only=True)

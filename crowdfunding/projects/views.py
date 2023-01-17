@@ -36,6 +36,6 @@ class ProjectDetail(APIView):
         serializer = ProjectSerializer(project)
         return Response(serializer.data)
 
-class PledgeList(generics.ListCreateAPIView):
+class PledgeList(generics.ListCreateAPIView): #this is a condensed version of the code written above, such as class projectlist
 	queryset = Pledge.objects.all()
 	serializer_class = PledgeSerializer
