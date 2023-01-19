@@ -1,16 +1,15 @@
-from django.shortcuts import render ####
-from rest_framework import status, permissions
-from rest_framework.views import APIView ####
-from rest_framework.response import Response #####
+from django.shortcuts import render
+from rest_framework import status, permissions, generics
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from django.http import Http404
+
 from .models import Project, Pledge
 from .serializers import ProjectSerializer, PledgeSerializer, ProjectDetailSerializer
-from django.http import Http404  ####
-from rest_framework import status, generics  ####
 from .permissions import IsOwnerOrReadOnly
 
-
-
-class ProjectList(APIView):
+# Create views here 
+class ProjectList(APIView): #long code verisn
 
     def get(self, request):
         projects = Project.objects.all()
@@ -24,9 +23,10 @@ class ProjectList(APIView):
             return Response(serializer.data,status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
-        #return Response(serializer.data)
+       
 
 class ProjectDetail(APIView):
+    
     permission_classes = [permissions.IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
 
     def get_object(self, pk):
@@ -47,12 +47,16 @@ class ProjectDetail(APIView):
         project = self.get_object(pk)
         data = request.data
         serializer = ProjectDetailSerializer(instance=project,data=data,partial=True)
+        
         if serializer.is_valid():
             serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors)
 
 class PledgeList(generics.ListCreateAPIView): #this is a condensed version of the code written above, such as class projectlist
-	queryset = Pledge.objects.all()
-	serializer_class = PledgeSerializer
+    
+    queryset = Pledge.objects.all()
+    serializer_class = PledgeSerializer
     
     def perform_create(self, serializer):
         serializer.save(supporter=self.request.user)
