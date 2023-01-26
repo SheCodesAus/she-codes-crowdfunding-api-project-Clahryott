@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Project, Pledge
+from users.serializers import CustomUserSerializer
 
 #every model requires a serializer to be created
 
@@ -13,7 +14,8 @@ class ProjectSerializer(serializers.Serializer):
     date_created = serializers.DateTimeField()
     #owner = serializers.CharField(max_length=200) - REMOVED and replaces with ReadOnlyField
     owner = serializers.ReadOnlyField(source='owner.id') #saves a query to database and when project is created, the logged in user will be the owner
-    
+    total = serializers.ReadOnlyField()
+
     amount_pledges = serializers.ReadOnlyField() # ****
     goal_vs_pledges = serializers.ReadOnlyField() #### can this be named differently
 
@@ -42,3 +44,4 @@ class PledgeSerializer(serializers.ModelSerializer):
 
 class ProjectDetailSerializer(ProjectSerializer):
 	pledges = PledgeSerializer(many=True, read_only=True)
+    liked_by = CustomUserSerializer(many=True, read_only=True)

@@ -15,6 +15,12 @@ class Project(models.Model):
 	date_created = models.DateTimeField(auto_now_add=True) # auto_now_add=True --- this updates to time created
 	#owner = models.CharField(max_length=200) --- NO LONGER USED
 	owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owner_projects') #the section in () connects the owner ID to the related name = owner_projects
+	liked_by = models.ManyToManyField(User,related_name='liked_projects')
+
+
+	#@property
+	#def total(self):
+	#	return self.pledges.aggregate(sum=models.Sum('amount'))['sum']
 
     @property
     def amount_pledges(self):
