@@ -16,6 +16,29 @@ class Project(models.Model):
 	#owner = models.CharField(max_length=200) --- NO LONGER USED
 	owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owner_projects') #the section in () connects the owner ID to the related name = owner_projects
 
+    @property
+    def amount_pledges(self):
+        '''    Calculates the total of each pledge for each project.   '''
+        pledge_amount = self.pledges.aggregate(sum=models.Sum('amount'))['sum']
+        if pledge_amount == None:
+            return 0
+        else:
+            return pledge_amount
+
+    @property
+    def goal_vs_pledges(self):
+        '''    Looks at the goal and compares to the total number of pledges. '''
+        goal_balance = self.goal - self.amount_pledges
+        
+        if goal_balance <= 0:
+            return f"Congratulations! {self.title} project has been funded with {self.amount_pledges} worth of pledges!"
+        else:
+            return f"There's {goal_balance} left to raise until the goal of {self.goal} is reached!"
+    
+    def __str__(self):
+        '''     Changing representation of project object id to title so when ModelSerializer form is rendered, the title of the project will display, not the ID number.
+                Same way as in admin portal from django project    '''
+        return self.title
 
 class Pledge(models.Model):
 	amount = models.IntegerField() #reminder, this needs to be set to a min, such as 1
