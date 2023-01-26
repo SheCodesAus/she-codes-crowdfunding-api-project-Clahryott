@@ -9,7 +9,7 @@ from .serializers import ProjectSerializer, PledgeSerializer, ProjectDetailSeria
 from .permissions import IsOwnerOrReadOnly
 
 # Create views here 
-class ProjectList(APIView): #long code verisn
+class ProjectList(APIView): #long code version
 
     def get(self, request):
         projects = Project.objects.all()

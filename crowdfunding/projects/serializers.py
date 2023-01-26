@@ -43,5 +43,5 @@ class PledgeSerializer(serializers.ModelSerializer):
         read_only_fields = ['id', 'supporter']
 
 class ProjectDetailSerializer(ProjectSerializer):
-	pledges = PledgeSerializer(many=True, read_only=True)
+    pledges = PledgeSerializer(many=True, read_only=True)
     liked_by = CustomUserSerializer(many=True, read_only=True)

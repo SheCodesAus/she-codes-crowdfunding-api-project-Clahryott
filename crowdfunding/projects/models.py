@@ -7,20 +7,20 @@ User = get_user_model() #its using from setting.py - it's telling it to go there
 
 
 class Project(models.Model):
-	title = models.CharField(max_length=200)
-	description = models.TextField()
-	goal = models.IntegerField() #this needs a minimum amount, such as 1
-	image = models.URLField()
-	is_open = models.BooleanField() #another way is is_active or status
-	date_created = models.DateTimeField(auto_now_add=True) # auto_now_add=True --- this updates to time created
-	#owner = models.CharField(max_length=200) --- NO LONGER USED
-	owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owner_projects') #the section in () connects the owner ID to the related name = owner_projects
-	liked_by = models.ManyToManyField(User,related_name='liked_projects')
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    goal = models.IntegerField() #this needs a minimum amount, such as 1
+    image = models.URLField()
+    is_open = models.BooleanField() #another way is is_active or status
+    date_created = models.DateTimeField(auto_now_add=True) # auto_now_add=True --- this updates to time created
+    #owner = models.CharField(max_length=200) --- NO LONGER USED
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owner_projects') #the section in () connects the owner ID to the related name = owner_projects
+    liked_by = models.ManyToManyField(User,related_name='liked_projects')
 
 
-	#@property
-	#def total(self):
-	#	return self.pledges.aggregate(sum=models.Sum('amount'))['sum']
+    #@property
+    #def total(self):
+    #	return self.pledges.aggregate(sum=models.Sum('amount'))['sum']
 
     @property
     def amount_pledges(self):
@@ -47,9 +47,9 @@ class Project(models.Model):
         return self.title
 
 class Pledge(models.Model):
-	amount = models.IntegerField() #reminder, this needs to be set to a min, such as 1
-	comment = models.CharField(max_length=200)
-	anonymous = models.BooleanField()
-	project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='pledges') #foreign key triggers a rename to a No# - such as support project will be project ID
-	supporter = models.ForeignKey(User, on_delete=models.CASCADE, related_name='supporter_pledges') #what is cascade and on-delete  - it does a mass delete??? confirm  
+    amount = models.IntegerField() #reminder, this needs to be set to a min, such as 1
+    comment = models.CharField(max_length=200)
+    anonymous = models.BooleanField()
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='pledges') #foreign key triggers a rename to a No# - such as support project will be project ID
+    supporter = models.ForeignKey(User, on_delete=models.CASCADE, related_name='supporter_pledges') #what is cascade and on-delete  - it does a mass delete??? confirm  
 
