@@ -13,14 +13,20 @@ class ProjectSerializer(serializers.Serializer):
     date_created = serializers.DateTimeField()
     #owner = serializers.CharField(max_length=200) - REMOVED and replaces with ReadOnlyField
     owner = serializers.ReadOnlyField(source='owner.id') #saves a query to database and when project is created, the logged in user will be the owner
+    
+    amount_pledges = serializers.ReadOnlyField() # ****
+    goal_vs_pledges = serializers.ReadOnlyField() #### can this be named differently
+
+
 
     def create(self, validated_data):
-        return Project.objects.create(**validated_data)
+        return Project.objects.create(**validated_data) #### what does this do?
 
     def update(self, instance, validated_data):
         instance.title = validated_data.get('title', instance.title)
         instance.description = validated_data.get('description', instance.description)
         instance.goal = validated_data.get('goal', instance.goal)
+        instance.image = validated_data.get('image', instance.image)
         instance.is_open = validated_data.get('is_open', instance.is_open)
         instance.date_created = validated_data.get('date_created', instance.date_created)
         instance.owner = validated_data.get('owner', instance.owner)
