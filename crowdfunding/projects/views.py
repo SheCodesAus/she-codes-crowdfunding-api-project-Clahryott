@@ -9,14 +9,14 @@ from .serializers import ProjectSerializer, PledgeSerializer, ProjectDetailSeria
 from .permissions import IsOwnerOrReadOnly
 
 # Create views here 
-class ProjectList(APIView): #long code version
+class ProjectList(APIView): #long code version for project (this is what is in the container, so to speak)
 
-    def get(self, request):
+    def get(self, request): #using GET here // when you get a get request this is what you do
         projects = Project.objects.all()
-        serializer = ProjectSerializer(projects, many=True)
-        return Response(serializer.data)
+        serializer = ProjectSerializer(projects, many=True) 
+        return Response(serializer.data) #means get the data out of serializer
 
-    def post(self, request):
+    def post(self, request): #using a POST request here
         serializer = ProjectSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save(owner=request.user)
@@ -27,12 +27,12 @@ class ProjectList(APIView): #long code version
 
 class ProjectDetail(APIView):
     
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly] #adding to view - only the project owner can edit
 
     def get_object(self, pk):
         try:
-            project = Project.objects.get(pk=pk)
-            self.check_object_permissions(self.request, project)
+            project = Project.objects.get(pk=pk) #pk = the variable we give to the pk (primary key)
+            self.check_object_permissions(self.request, project) # this is an additional layer for permission checks
             #return Project.objects.get(pk=pk)
             return project
         except Project.DoesNotExist:

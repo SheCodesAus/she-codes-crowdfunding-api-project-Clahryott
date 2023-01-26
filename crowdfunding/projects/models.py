@@ -23,7 +23,7 @@ class Project(models.Model):
     #	return self.pledges.aggregate(sum=models.Sum('amount'))['sum']
 
     @property
-    def amount_pledges(self):
+    def amount_pledged(self):
         '''    Calculates the total of each pledge for each project.   '''
         pledge_amount = self.pledges.aggregate(sum=models.Sum('amount'))['sum']
         if pledge_amount == None:
@@ -53,3 +53,9 @@ class Pledge(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='pledges') #foreign key triggers a rename to a No# - such as support project will be project ID
     supporter = models.ForeignKey(User, on_delete=models.CASCADE, related_name='supporter_pledges') #what is cascade and on-delete  - it does a mass delete??? confirm  
 
+"""
+FLOW:
+    projects/app.py > crowdfunding/settings.py > projects/models.py > make / migrate > projects/serializers.py > projects/views.py > projects/urls.py > Crowdfunding/urls.py
+    
+    users/ap.py > crowdfunding/settings.py > users/models.py > make / migrate > projects/models.py > make / migrate > create superuser > users/serializer.py > users/views.py > users/urls.py > crowdfunding/urls.py 
+"""

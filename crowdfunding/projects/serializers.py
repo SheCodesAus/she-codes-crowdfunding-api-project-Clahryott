@@ -16,13 +16,13 @@ class ProjectSerializer(serializers.Serializer):
     owner = serializers.ReadOnlyField(source='owner.id') #saves a query to database and when project is created, the logged in user will be the owner
     total = serializers.ReadOnlyField()
 
-    amount_pledges = serializers.ReadOnlyField() # ****
-    goal_vs_pledges = serializers.ReadOnlyField() #### can this be named differently
+    amount_pledged = serializers.ReadOnlyField() # 
+    goal_vs_pledges = serializers.ReadOnlyField() #
 
 
 
     def create(self, validated_data):
-        return Project.objects.create(**validated_data) #### what does this do?
+        return Project.objects.create(**validated_data) #returns the key value pairs - title = string, description = value etc
 
     def update(self, instance, validated_data):
         instance.title = validated_data.get('title', instance.title)
@@ -35,13 +35,13 @@ class ProjectSerializer(serializers.Serializer):
         instance.save()
         return instance
 
-class PledgeSerializer(serializers.ModelSerializer):
+class PledgeSerializer(serializers.ModelSerializer): #is this doing the serializer not manually?
     class Meta:
         model = Pledge
         fields = ['id', 'amount', 'comment', 'anonymous', 'project', 'supporter']
 #this is a manual section, hence the fields need to be identified, rather than the below ProjectDetailSerializer (shorthand)
         read_only_fields = ['id', 'supporter']
 
-class ProjectDetailSerializer(ProjectSerializer):
+class ProjectDetailSerializer(ProjectSerializer): #pledges linked to each project 
     pledges = PledgeSerializer(many=True, read_only=True)
-    liked_by = CustomUserSerializer(many=True, read_only=True)
+    liked_by = CustomUserSerializer(many=True, read_only=True) #reducing the amount of data we are fetching when viewing all projects
