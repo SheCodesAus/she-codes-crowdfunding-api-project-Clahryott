@@ -25,8 +25,9 @@ SECRET_KEY = 'django-insecure-6f5fiv53l$d=%d_0_8&znvd!6&d3rfy-qowzswx^u)i-p_dsm6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['playfunding.fly.dev']
+ALLOWED_HOSTS = ['playfunding.fly.dev', '127.0.0.1', 'localhost']
 
 # Application definition
 
