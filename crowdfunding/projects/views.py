@@ -2,11 +2,13 @@ from django.shortcuts import render
 from rest_framework import status, permissions, generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.exceptions import NotFound
 from django.http import Http404
+from django.db import IntegrityError
 
 from .models import Project, Pledge
 from .serializers import ProjectSerializer, PledgeSerializer, ProjectDetailSerializer
-from .permissions import IsOwnerOrReadOnly
+from .permissions import IsOwnerOrReadOnly, IsSupporterOrReadOnly
 
 # Create views here 
 class ProjectList(APIView): #long code version for project (this is what is in the container, so to speak)
@@ -57,6 +59,15 @@ class PledgeList(generics.ListCreateAPIView): #this is a condensed version of th
     
     queryset = Pledge.objects.all()
     serializer_class = PledgeSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     
     def perform_create(self, serializer):
         serializer.save(supporter=self.request.user)
+
+    def get(self, request):
+        pledges = self.get_queryset()
+        if not pledges:
+            return Response({"message": "We need your help! Pick a project and send pledge to help us along"}, status=status.HTTP_204_NO_CONTENT)
+
+        serializer = self.get_serializer(pledges, many=True)
+        return Response(serializer.data)
