@@ -61,14 +61,14 @@
   - [ ] Limit who can retrieve
   - [ ] Limit who can update
   - [ ] Limit who can delete
-- Pledge
+- User
   - [ ] Limit who can retrieve
   - [ ] Limit who can update
   - [ ] Limit who can delete
 ​
 ### Implement relevant status codes
 ​
-- [ ] Get returns 200
+- [ ] GET returns 200
 - [ ] Create returns 201
 - [ ] Not found returns 404
 ​
@@ -78,7 +78,7 @@
 ​
 ### Use token authentication
 ​
-- [X] impliment /api-token-auth/
+- [X] implement /api-token-auth/
 ​
 ## Additional features
 ​
