@@ -71,3 +71,8 @@ class PledgeList(generics.ListCreateAPIView): #this is a condensed version of th
 
         serializer = self.get_serializer(pledges, many=True)
         return Response(serializer.data)
+        
+class PledgeDetailView(generics.RetrieveUpdateDestroyAPIView): #this is a condensed version of the code written above, such as class projectlist
+    
+    queryset = Pledge.objects.all()
+    serializer_class = PledgeSerializer

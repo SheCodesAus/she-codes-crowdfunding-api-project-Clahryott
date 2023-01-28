@@ -29,15 +29,15 @@ class Project(models.Model):
         if pledge_amount == None:
             return 0
         else:
-            return pledge_amount
+            return pledge_amount     ####### is this CORRECT?
 
     @property
     def goal_vs_pledges(self):
         '''    Looks at the goal and compares to the total number of pledges. '''
-        goal_balance = self.goal - self.amount_pledges
+        goal_balance = self.goal - self.amount_pledged
         
         if goal_balance <= 0:
-            return f"Congratulations! {self.title} project has been funded with {self.amount_pledges} worth of pledges!"
+            return f"Congratulations! {self.title} project has been funded with {self.amount_pledged} worth of pledges!"
         else:
             return f"There's {goal_balance} left to raise until the goal of {self.goal} is reached!"
     

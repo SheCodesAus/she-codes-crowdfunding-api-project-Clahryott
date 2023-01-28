@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Project, Pledge
-from users.serializers import CustomUserSerializer
+from users.serializers import CustomUserSerializer, CustomUser
 
 #every model requires a serializer to be created
 
@@ -45,3 +45,4 @@ class PledgeSerializer(serializers.ModelSerializer): #is this doing the serializ
 class ProjectDetailSerializer(ProjectSerializer): #pledges linked to each project 
     pledges = PledgeSerializer(many=True, read_only=True)
     liked_by = CustomUserSerializer(many=True, read_only=True) #reducing the amount of data we are fetching when viewing all projects
+
