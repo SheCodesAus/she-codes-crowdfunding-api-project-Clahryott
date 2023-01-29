@@ -1,6 +1,10 @@
 # {{ PLAYFUNDING }}
 ​
-{{ a paragraph detailing the purpose and target audience }}
+{{ Playfunding helps generate funding for afterschool programs for children, youth and families.
+
+After-school activities like sport, music, craft and dance build children's confidence, help them make friends and learn to get along with people, keep them fit and healthy, and help them develop new skills and discover talents and interests 
+
+Promote positive youth development and support social, emotional, cognitive, and academic development, reduce risky behaviors, promote physical health, and provide a safe and supportive environment for children and youth.}}
 ​
 ## Features
 ​
