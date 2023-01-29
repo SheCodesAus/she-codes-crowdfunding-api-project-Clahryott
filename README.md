@@ -12,7 +12,7 @@ Promote positive youth development and support social, emotional, cognitive, and
 ​
 - [X] Username
 - [X] Email Address
-- [X] Password
+- [X] Password   -******* Have we done authenticated? do we ?
 ​
 ### Project
 ​
@@ -20,9 +20,9 @@ Promote positive youth development and support social, emotional, cognitive, and
   - [X] Title
   - [X] Owner (a user)
   - [X] Description
-  - [X] Image
+  - [] Image
   - [X] Target Amount to Fundraise
-  - [X] Open/Close (Accepting new supporters)
+  - [] Open/Close (Accepting new supporters)
   - [X] When was the project created
 - [X] Ability to pledge to a project
   - [X] An amount
@@ -56,12 +56,12 @@ Promote positive youth development and support social, emotional, cognitive, and
 **Note: Not all of these may be required for your project, if you have not included one of these please justify why.**
 ​
 - Project
-  - [ ] Limit who can create
+  - [X] Limit who can create
   - [ ] Limit who can retrieve
   - [ ] Limit who can update
   - [ ] Limit who can delete
 - Pledge
-  - [ ] Limit who can create
+  - [X] Limit who can create
   - [ ] Limit who can retrieve
   - [ ] Limit who can update
   - [ ] Limit who can delete
