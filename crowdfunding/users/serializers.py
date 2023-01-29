@@ -9,6 +9,8 @@ from .models import CustomUser
     #def create(self, validated_data):
         #return CustomUser.objects.create(**validated_data)  
 
+# ADD password creation / don't worry about password reset
+    
 
 # use of Model Serializer to save time on setting password
 class CustomUserSerializer(serializers.ModelSerializer):
