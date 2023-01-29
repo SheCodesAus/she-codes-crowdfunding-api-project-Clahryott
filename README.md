@@ -1,4 +1,4 @@
-# {{ my project title }}
+# {{ PLAYFUNDING }}
 ​
 {{ a paragraph detailing the purpose and target audience }}
 ​
