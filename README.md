@@ -48,8 +48,8 @@ Promote positive youth development and support social, emotional, cognitive, and
 - User
   - [X] Create
   - [X] Retrieve
-  - [ ] Update
-  - [ ] Destroy
+  - [ ] Update - user can only update their own profile, not others
+  - [ ] Destroy - user can only delete their own profile, not others
 ​
 ### Implement suitable permissions
 ​
@@ -67,18 +67,18 @@ Promote positive youth development and support social, emotional, cognitive, and
   - [ ] Limit who can delete
 - User
   - [ ] Limit who can retrieve
-  - [ ] Limit who can update
-  - [ ] Limit who can delete
+  - [ ] Limit who can update - user can only update their own profile, not others
+  - [ ] Limit who can delete - user can only delete their own profile, not others
 ​
 ### Implement relevant status codes
 ​
-- [ ] GET returns 200
-- [ ] Create returns 201
+- [x] GET returns 200
+- [x] Create returns 201
 - [ ] Not found returns 404
 ​
 ### Handle failed requests gracefully 
 ​
-- [ ] 404 response returns JSON rather than text
+- [] 404 response returns JSON rather than text  
 ​
 ### Use token authentication
 ​
@@ -100,7 +100,7 @@ Promote positive youth development and support social, emotional, cognitive, and
 ​
 ### External libraries used
 ​
-- [ ] django-filter
+- [ ] django-filter    **** downloaded and added to installed apps, not sure what else to add it ***
 ​
 ​
 ## Part A Submission
@@ -116,41 +116,48 @@ Promote positive youth development and support social, emotional, cognitive, and
 1. Create User
 ​
 ```shell
+
 curl --request POST \
   --url http://127.0.0.1:8000/users/ \
   --header 'Content-Type: application/json' \
   --data '{
-	"username": "testuser",
-	"email": "not@myemail.com",
-	"password": "not-my-password"
+	"email": "mary@admin.com",
+	"username": "Mary",
+	"password": "maryspassword"
 }'
+
 ```
 ​
 2. Sign in User
 ​
 ```shell
+
 curl --request POST \
   --url http://127.0.0.1:8000/api-token-auth/ \
   --header 'Content-Type: application/json' \
   --data '{
-	"username": "testuser",
-	"password": "not-my-password"
+	"username": "Mary",
+	"password": "maryspassword"
 }'
+
 ```
 ​
 3. Create Project
 ​
 ```shell
+
 curl --request POST \
   --url http://127.0.0.1:8000/projects/ \
-  --header 'Authorization: Token 5b8c82ec35c8e8cb1fac24f8eb6d480a367f322a' \
+  --header 'Authorization: Token  c044fd0b94a3abb664aca51cb089d278268b8d9c' \
   --header 'Content-Type: application/json' \
   --data '{
-	"title": "Donate a cat",
-	"description": "Please help, we need a cat for she codes plus, our class lacks meows.",
-	"goal": 1,
-	"image": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Dollar_bill_and_small_change.jpg",
-	"is_open": true,
-	"date_created": "2023-01-28T05:53:46.113Z"
+	
+"title": "Girls Netball",
+"description": "Netball for 10-11 yr olds, near Ballajura. Contributions will go towards court fees, umpire and team requirements such as uniform",
+"goal":10000,
+"image": "https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.gannett-cdn.com%2Fpresto%2F2019%2F05%2F02%2FPDEM%2F1ac9d821-1fc3-4603-8fbd-23acc93b2250-IMG_8908.JPG&imgrefurl=https%3A%2F%2Fwww.desmoinesregister.com%2Fstory%2Fnews%2Fcrime-and-courts%2F2019%2F05%2F01%2F24-severely-sick-cats-rescued-des-moines-days-after-26-others-saved-animal-rescue-league-iowa-arl%2F3648147002%2F&tbnid=bOhZ-L5cX07VAM&vet=12ahUKEwiMrsSFz9f8AhVsLrcAHYP7BOoQMygAegUIARDdAQ..i&docid=7RXs0wAS4FbggM&w=4032&h=3024&itg=1&q=sick%20cats&ved=2ahUKEwiMrsSFz9f8AhVsLrcAHYP7BOoQMygAegUIARDdAQ",
+"is_open": true,
+"date_created": "2023-01-30T09:05:10.729Z"
 }'
+
 ```
