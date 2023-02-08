@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY','django-insecure-6f5fiv53l$d=%d_0_8&znvd!6&d3rfy-qowzswx^u)i-p_dsm6')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DJANGO_DEBUG", "False") != "False"
+DEBUG = os.environ.get("DJANGO_DEBUG", "False") != "True"
 
 ALLOWED_HOSTS = ['*']
 ALLOWED_HOSTS = ['playfunding.fly.dev']

@@ -12,7 +12,7 @@ Promote positive youth development and support social, emotional, cognitive, and
 ​
 - [X] Username
 - [X] Email Address
-- [X] Password   -******* Have we done authenticated? do we ?
+- [X] Password   
 ​
 ### Project
 ​
@@ -38,17 +38,17 @@ Promote positive youth development and support social, emotional, cognitive, and
 - Project
   - [X] Create
   - [X] Retrieve
-  - [ ] Update
-  - [ ] Destroy
+  - [X] Update       ***
+  - [ ] Destroy      ***
 - Pledge
   - [X] Create
   - [X] Retrieve
-  - [ ] Update
-  - [ ] Destroy
+  - [ ] Update       ***
+  - [ ] Destroy      ***
 - User
   - [X] Create
   - [X] Retrieve
-  - [ ] Update - user can only update their own profile, not others
+  - [X] Update - user can only update their own profile, not others
   - [ ] Destroy - user can only delete their own profile, not others
 ​
 ### Implement suitable permissions
@@ -58,7 +58,7 @@ Promote positive youth development and support social, emotional, cognitive, and
 - Project
   - [X] Limit who can create
   - [ ] Limit who can retrieve
-  - [ ] Limit who can update
+  - [X] Limit who can update
   - [ ] Limit who can delete
 - Pledge
   - [X] Limit who can create
@@ -66,9 +66,9 @@ Promote positive youth development and support social, emotional, cognitive, and
   - [ ] Limit who can update
   - [ ] Limit who can delete
 - User
-  - [ ] Limit who can retrieve
-  - [ ] Limit who can update - user can only update their own profile, not others
-  - [ ] Limit who can delete - user can only delete their own profile, not others
+  - [X] Limit who can retrieve
+  - [X] Limit who can update - user can only update their own profile, not others
+  - [X] Limit who can delete - user can only delete their own profile, not others
 ​
 ### Implement relevant status codes
 ​
@@ -105,9 +105,9 @@ Promote positive youth development and support social, emotional, cognitive, and
 ​
 ## Part A Submission
 ​
-- [ ] A link to the deployed project.
-- [ ] A screenshot of Insomnia, demonstrating a successful GET method for any endpoint.
-- [ ] A screenshot of Insomnia, demonstrating a successful POST method for any endpoint.
+- [x] A link to the deployed project - https://playfunding.fly.dev/
+- [x] A screenshot of Insomnia, demonstrating a successful GET method for any endpoint.
+- [x] A screenshot of Insomnia, demonstrating a successful POST method for any endpoint.
 - [ ] A screenshot of Insomnia, demonstrating a token being returned.
 - [ ] Your refined API specification and Database Schema.
 ​
